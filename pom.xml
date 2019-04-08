@@ -113,7 +113,7 @@
                     </dependencies>
                     <executions>
                         <execution>
-                            <id>mybatis.generator</id>
+                            <id>Generate MyBatis Artifacts</id>
                             <phase>package</phase>
                             <goals>
                                 <goal>generate</goal>
@@ -126,7 +126,7 @@
                         <!-- 允许自动覆盖文件 -->
                         <overwrite>true</overwrite>
                         <configurationFile>
-                            src/main/resources/mybatis-generator.xml
+                            src/main/resources/generator/mybatis-generator.xml
                         </configurationFile>
                     </configuration>
                 </plugin>

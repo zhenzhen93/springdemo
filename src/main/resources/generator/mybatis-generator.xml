@@ -4,42 +4,40 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <classPathEntry location="/Program Files/IBM/SQLLIB/java/db2java.zip"/>
+
+    <classPathEntry  location="D:\Program Files (x86)\maven\localWareHouse\mysql\mysql-connector-java\5.1.41\mysql-connector-java-5.1.41.jar"/>
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
         <!-- 数据库链接地址账号密码 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/mybatis"
+                        connectionURL="jdbc:mysql://localhost:3306/miaosha"
                         userId="root"
-                        password="root">
+                        password="">
         </jdbcConnection>
 
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <!-- 生成Model类存放位置 -->
-        <javaModelGenerator targetPackage="test.model" targetProject="\MBGTestProject\src">
+        <!-- 生成DataObject类存放位置 -->
+        <javaModelGenerator targetPackage="com.miaoshaproject.dataobject" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!-- 生成映射文件存放位置 -->
-        <sqlMapGenerator targetPackage="test.xml" targetProject="\MBGTestProject\src">
+        <sqlMapGenerator targetPackage="mapping" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="test.dao" targetProject="\MBGTestProject\src">
+        <!-- 生成Dao类存放位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.miaoshaproject.dao" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
-        <table schema="DB2ADMIN" tableName="ALLTYPES" domainObjectName="Customer">
-            <property name="useActualColumnNames" value="true"/>
-            <generatedKey column="ID" sqlStatement="DB2" identity="true"/>
-            <columnOverride column="DATE_FIELD" property="startDate"/>
-            <ignoreColumn column="FRED"/>
-            <columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR"/>
-        </table>
+        <!-- 生成对应表及列名 -->
+        <table tableName="user_info" domainObjectName="UserDO"></table>
+        <table tableName="user_password" domainObjectName="UserPassword"></table>
 
     </context>
 </generatorConfiguration>
