@@ -56,7 +56,7 @@ public class UserController extends BaseController {
                                      @RequestParam(name = "password") String password) throws BusinessException, UnsupportedEncodingException, NoSuchAlgorithmException {
         //验证手机号和对应的otpCode是否符合
         String inSessionOtpCode = (String) this.httpServletRequest.getSession().getAttribute(telephone);
-        if (StringUtils.equals(otpCode, inSessionOtpCode)) {
+        if (!StringUtils.equals(otpCode, inSessionOtpCode)) {
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR, "短信验证码错误");
         }
         //用户注册流程
